@@ -10,7 +10,7 @@ import marked from 'marked';
 
 export default {
   name: 'markdown-editor',
-  props:
+  props: {
     value: String,
     name: String,
     previewClass: String,
