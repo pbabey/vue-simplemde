@@ -1,6 +1,6 @@
 <template>
   <div class="markdown-editor">
-    <textarea :name="name"></textarea>
+    <textarea :name="name" v-on:blur="emit('blur', simplemde.value())"></textarea>
   </div>
 </template>
 
@@ -10,7 +10,7 @@ import marked from 'marked';
 
 export default {
   name: 'markdown-editor',
-  props: {
+  props:
     value: String,
     name: String,
     previewClass: String,
