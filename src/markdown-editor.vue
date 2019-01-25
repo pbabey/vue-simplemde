@@ -1,6 +1,6 @@
 <template>
   <div class="markdown-editor">
-    <textarea :name="name" v-on:blur="emit('blur', simplemde.value())"></textarea>
+    <textarea :name="name"></textarea>
   </div>
 </template>
 
@@ -56,32 +56,32 @@ export default {
         renderingConfig: {},
       }, this.configs);
 
-      // 同步 value 和 initialValue 的值
+      // value initialValue
       if (configs.initialValue) {
         this.$emit('input', configs.initialValue);
       }
 
-      // 判断是否开启代码高亮
       if (this.highlight) {
         configs.renderingConfig.codeSyntaxHighlighting = true;
       }
 
-      // 设置是否渲染输入的html
       marked.setOptions({ sanitize: this.sanitize });
 
-      // 实例化编辑器
       this.simplemde = new SimpleMDE(configs);
 
-      // 添加自定义 previewClass
+      // previewClass
       const className = this.previewClass || '';
       this.addPreviewClass(className);
 
-      // 绑定事件
       this.bindingEvents();
     },
     bindingEvents() {
       this.simplemde.codemirror.on('change', () => {
         this.$emit('input', this.simplemde.value());
+      });
+
+      this.simplemde.codemirror.on('blur', () => {
+        this.$emit('blur', this.simplemde.value());
       });
     },
     addPreviewClass(className) {
