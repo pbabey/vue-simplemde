@@ -85,9 +85,7 @@ export default {
       });
 
       this.simplemde.codemirror.on('dblclick', function(instance, event) {
-        console.log(event)
-        event.preventDefault()
-        event.stopPropagation()
+        this.$emit('input', this.simplemde.value());
       })
     },
     addPreviewClass(className) {
