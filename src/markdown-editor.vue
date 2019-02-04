@@ -83,6 +83,10 @@ export default {
       this.simplemde.codemirror.on('blur', () => {
         this.$emit('blur', this.simplemde.value());
       });
+
+      this.simplemde.codemirror.on('dblclick', function(instance, event) {
+        event.preventDefault()
+      })
     },
     addPreviewClass(className) {
       const wrapper = this.simplemde.codemirror.getWrapperElement();
